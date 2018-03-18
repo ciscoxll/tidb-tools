@@ -123,7 +123,7 @@ func genColumnData(table *table, column *column) (string, error) {
 	case mysql.TypeLong:
 		var data int64
 		if isUnique {
-			data = randInt64Value(column, math.MinInt32, math.MaxInt32)
+			data = randInt64Value(column, 0, math.MaxInt32)
 		} else {
 			if isUnsigned {
 				data = randInt64Value(column, 0, math.MaxUint32)
@@ -135,7 +135,7 @@ func genColumnData(table *table, column *column) (string, error) {
 	case mysql.TypeLonglong:
 		var data int64
 		if isUnique {
-			data = randInt64Value(column, math.MinInt32, math.MaxInt32)
+			data = randInt64Value(column, 0, math.MaxInt64)
 		} else {
 			if isUnsigned {
 				data = randInt64Value(column, 0, math.MaxInt64)
