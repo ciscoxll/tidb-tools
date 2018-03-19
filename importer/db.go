@@ -23,6 +23,7 @@ import (
 	"github.com/juju/errors"
 	"github.com/ngaut/log"
 	"github.com/pingcap/tidb/mysql"
+	"math/rand"
 )
 
 func intRangeValue(column *column, min int64, max int64) (int64, int64) {
@@ -135,7 +136,7 @@ func genColumnData(table *table, column *column) (string, error) {
 	case mysql.TypeLonglong:
 		var data int64
 		if isUnique {
-			data = randInt64Value(column, math.MinInt64, math.MaxInt64)
+			data = rand.Int63n(math.MaxInt64)
 		} else {
 			if isUnsigned {
 				data = randInt64Value(column, 0, math.MaxInt64)
